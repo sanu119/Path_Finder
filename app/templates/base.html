@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{% block title %}Pathfinder{% endblock %} · Career & Skill Roadmap</title>
+  <meta name="description" content="Pathfinder helps students turn career goals into personalized, skill-based roadmaps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top py-3" id="topNav">
+ <div class="container">
+  <a class="navbar-brand brand" href="/"><span class="brand-mark"><i class="bi bi-compass"></i></span>Pathfinder</a>
+  <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+  <div class="collapse navbar-collapse" id="nav">
+   <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+    <li class="nav-item"><a class="nav-link" href="/careers">Explore Careers</a></li>
+    <li class="nav-item"><a class="nav-link" href="/compare">Compare</a></li>
+    <li class="nav-item auth-only d-none"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+    <li class="nav-item admin-only d-none"><a class="nav-link" href="/admin-ui">Admin</a></li>
+    <li class="nav-item"><button class="btn btn-sm theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><i class="bi bi-moon-stars"></i></button></li>
+    <li class="nav-item guest-only"><a class="btn btn-outline-primary ms-lg-2" href="/login">Log in</a></li>
+    <li class="nav-item guest-only"><a class="btn btn-gradient" href="/register">Get started</a></li>
+    <li class="nav-item auth-only d-none"><button class="btn btn-gradient ms-lg-2" id="logoutBtn">Log out</button></li>
+   </ul>
+  </div>
+ </div>
+</nav>
+<main>{% block content %}{% endblock %}</main>
+<footer class="py-5 border-top mt-5"><div class="container d-flex flex-column flex-md-row justify-content-between gap-3"><div><div class="brand mb-2">Pathfinder</div><div class="text-secondary small">Career clarity, one skill at a time.</div></div><div class="text-secondary small">Rule-based · Private · Student-first</div></div></footer>
+<div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body></html>
